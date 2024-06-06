@@ -26,5 +26,14 @@ k apply -f posts-depl.yaml
 k get deployments
 k describe deployment posts-depl
 k delete deployment posts-depl
+
+
 ```
 ![alt text](README_IMG/image2.png)
+
+Update Deployment
+```bash
+kubectl rollout restart deployment posts-depl
+```
+![alt text](README_IMG/image3.png)
+![alt text](README_IMG/image4.png)
