@@ -22,7 +22,8 @@ kubectl describe pod posts
 
 Deployment
 ```bash
-k apply -f posts-depl.yaml
+k apply -f posts-depl.yaml 
+k apply -f . (apply all files)
 k get deployments
 k describe deployment posts-depl
 k delete deployment posts-depl
