@@ -43,3 +43,9 @@ Services
 k get services
 ```
 ![alt text](README_IMG/image5.png)
+
+
+---Step---
+Test communication between Services
+
+![alt text](README_IMG/image6.png)
