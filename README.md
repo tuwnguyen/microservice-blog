@@ -48,3 +48,22 @@ k get services
 
 Test communication between Services
 ![alt text](README_IMG/image6.png)
+
+
+Install Ingress-Nginx
+
+https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
+kubectl get ing
+kubectl get services -n ingress-nginx
+
+```
+![alt text](README_IMG/image9.png)
+
+Hosts File Tweak
+```bash
+code /etc/host
+```
+![alt text](README_IMG/image7.png)
+![alt text](README_IMG/image8.png)
