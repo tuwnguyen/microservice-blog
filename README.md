@@ -67,3 +67,18 @@ code /etc/host
 ```
 ![alt text](README_IMG/image7.png)
 ![alt text](README_IMG/image8.png)
+
+
+Scaffold
+
+https://skaffold.dev/docs/
+```bash
+brew install skaffold
+
+scaffold
+scaffold fix (fix to newest version of apiVersionin YAML file)
+scaffold dev (rebuild all deployments)
+scaffold delete (clean up all pods, services, deployments) (Ctrl + C)
+
+```
+![alt text](README_IMG/image10.png)
