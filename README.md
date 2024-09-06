@@ -7,6 +7,8 @@ docker build -t tuwnguyen/posts .
 docker run -it tuwnguyen/posts sh
 docker exec -it 9a0c73a964bc sh
 docker logs 28e1f2b13a94
+
+docker push <dockerhub/image>
 ```
 
 ## K8s Services
@@ -16,11 +18,12 @@ kubectl apply -f posts.yaml
 kubectl get pods
 kubectl exec -it posts sh
 kubectl describe pod posts
+kubectl logs <pod-name>
 ```
 ![alt text](README_IMG/image.png)
 ![alt text](README_IMG/image1.png)
 
-Deployment
+### Deployment
 ```bash
 k apply -f posts-depl.yaml 
 k apply -f . (apply all files)
@@ -32,14 +35,14 @@ k delete deployment posts-depl
 ```
 ![alt text](README_IMG/image2.png)
 
-Update Deployment
+### Update Deployment
 ```bash
 kubectl rollout restart deployment posts-depl
 ```
 ![alt text](README_IMG/image3.png)
 ![alt text](README_IMG/image4.png)
 
-Services
+### Services
 ```bash
 k get services
 ```
@@ -50,7 +53,7 @@ Test communication between Services
 ![alt text](README_IMG/image6.png)
 
 
-Install Ingress-Nginx
+### Install Ingress-Nginx
 
 https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
 ```bash
@@ -61,7 +64,7 @@ kubectl get services -n ingress-nginx
 ```
 ![alt text](README_IMG/image9.png)
 
-Hosts File Tweak
+### Hosts File Tweak
 ```bash
 code /etc/host
 ```
@@ -69,16 +72,25 @@ code /etc/host
 ![alt text](README_IMG/image8.png)
 
 
-Scaffold
+### Scaffold
 
 https://skaffold.dev/docs/
 ```bash
 brew install skaffold
 
-scaffold
-scaffold fix (fix to newest version of apiVersionin YAML file)
-scaffold dev (rebuild all deployments)
-scaffold delete (clean up all pods, services, deployments) (Ctrl + C)
+skaffold
+skaffold fix (fix to newest version of apiVersionin YAML file)
+skaffold dev (rebuild all deployments)
+skaffold delete (clean up all pods, services, deployments) (Ctrl + C)
 
 ```
 ![alt text](README_IMG/image10.png)
+
+### Note about K8s
+When you delete pods in Kubernetes, they often get recreated automatically due to the underlying mechanisms of Kubernetes, particularly when they are part of a deployment or replica set. Here are the main reasons why this happens:
+
+1. Deployment and Replica Sets
+Kubernetes uses deployments and replica sets to manage the desired state of applications. When you delete a pod that is managed by a deployment, Kubernetes will automatically create a new pod to maintain the specified number of replicas. This behavior is by design to ensure high availability and resilience of applications. If you want to stop the pods from being recreated, you need to scale down the deployment or delete the deployment itself, not just the pods
+
+Conclusion
+To effectively stop pods from being recreated, you should scale down or delete the associated deployment, replica set, StatefulSet, or DaemonSet. Simply deleting the pods will not suffice, as Kubernetes is designed to maintain the desired state of applications automatically.
